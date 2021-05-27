@@ -19,3 +19,4 @@ composser
 >> cd ecomm-backend
 [!] * start laravel
 >> php artisan serve
+>> ok
