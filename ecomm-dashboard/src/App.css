@@ -7,8 +7,23 @@
   pointer-events: none;
 }
 
-.navbar_warapper a{
-  padding-left:30px;
+.navbar_warapper a {
+  padding-left: 30px;
+}
+.delete{
+  background-color: #a90b0b;
+  color: #ffff;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.update{
+  background-color: green;
+  color: #ffff;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

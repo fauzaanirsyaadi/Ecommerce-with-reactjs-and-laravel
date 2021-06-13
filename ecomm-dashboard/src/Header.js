@@ -1,18 +1,43 @@
-import { Navbar, Nav } from 'react-bootstrap/';
-import {Link} from 'react-router-dom'
+import { Navbar, NavDropdown, Container, Nav } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
 
 function Header() {
+  let user = JSON.parse(localStorage.getItem("user-info"));
+  const history = useHistory();
+  console.log(user);
+  function logout() {
+    localStorage.clear();
+    history.push("/register");
+  }
   return (
     <div>
-      <h1>Header Page</h1>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="#home">E-Comm</Navbar.Brand>
-        <Nav className="mr-auto" navbar_warapper>
-          <Link to="/Add" > Add Product </Link>
-          <Link to="/Update" > Update Product </Link>
-          <Link to="/Login" > Login </Link>
-          <Link to="/Register" > Register </Link>
+        <Nav className="mr-auto navbar_warapper">
+          {localStorage.getItem("user-info") ? (
+            <>
+              <Link to="/">Product List</Link>
+              <Link to="/add">Add Products</Link>
+              <Link to="/update">Update Products</Link>
+              <Link to="/search">Search Products</Link>
+              
+            </>
+          ) : (
+            <>
+              <Link to="/login">Login </Link>
+              <Link to="/register">Register </Link>
+            </>
+          )}
         </Nav>
+        {localStorage.getItem("user-info") ? (
+          <>
+            <Nav className="mr-5">
+              <NavDropdown className="mr-5" title={user && user.name}>
+                <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+          </>
+        ) : null}
       </Navbar>
     </div>
   );
